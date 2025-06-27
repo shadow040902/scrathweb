@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ĐĂNG KÝ HỌC LẬP TRÌNH SCRATCH</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Segoe+UI:400,700&display=swap">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e3e6f3 0%, #c9c6f6 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .form-container {
+            background: #fff;
+            border-radius: 12px;
+            max-width: 420px;
+            margin: 32px auto 32px auto;
+            box-shadow: 0 4px 24px rgba(124, 77, 255, 0.10);
+            padding: 32px 28px 24px 28px;
+        }
+
+        .form-title {
+            font-size: 1.15em;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .form-desc {
+            color: #555;
+            font-size: 0.98em;
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: #222;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="number"],
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1em;
+            background: #f6f7fb;
+            transition: border 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border: 1.5px solid #7c4dff;
+            outline: none;
+        }
+
+        .form-group .checkbox-group {
+            margin-top: 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group .checkbox-group label {
+            font-weight: 400;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0;
+        }
+
+        .form-group .checkbox-group input[type="checkbox"] {
+            accent-color: #7c4dff;
+            width: 16px;
+            height: 16px;
+        }
+
+        .required {
+            color: #d32f2f;
+            margin-left: 2px;
+            font-size: 1em;
+        }
+
+        .form-submit {
+            width: 100%;
+            background: #7c4dff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 0;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-top: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .form-submit:hover {
+            background: #5e35b1;
+        }
+
+        .form-note {
+            font-size: 0.95em;
+            color: #666;
+            margin: 18px 0 0 0;
+            text-align: left;
+        }
+
+        .form-footer {
+            margin-top: 28px;
+            border-top: 1px solid #eee;
+            padding-top: 16px;
+            font-size: 0.92em;
+            color: #888;
+            text-align: left;
+        }
+
+        @media (max-width: 600px) {
+            .form-container {
+                max-width: 98vw;
+                padding: 18px 4vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <div class="form-title">ĐĂNG KÝ HỌC LẬP TRÌNH SCRATCH</div>
+        <div class="form-desc">
+            Học lập trình Scratch không chỉ giúp các bạn trẻ phát triển kiến thức, kỹ năng một cách toàn diện mà còn
+            là chìa khóa mở ra cánh cửa tương lai. Hãy bắt đầu hành trình chinh phục những ước mơ với khóa học lập
+            trình Scratch ngay từ sớm để có nền tảng vững chắc cho một tương lai tươi sáng!
+        </div>
+        <form>
+            <div class="form-group">
+                <label>1. Họ và tên học viên <span class="required">*</span></label>
+                <input type="text" required placeholder="Nhập câu trả lời của bạn">
+            </div>
+            <div class="form-group">
+                <label>2. Năm sinh <span class="required">*</span></label>
+                <input type="text" required placeholder="Nhập câu trả lời của bạn">
+            </div>
+            <div class="form-group">
+                <label>3. Họ tên bố mẹ <span class="required">*</span></label>
+                <input type="text" required placeholder="Nhập câu trả lời của bạn">
+            </div>
+            <div class="form-group">
+                <label>4. Số điện thoại liên hệ <span class="required">*</span></label>
+                <input type="text" required placeholder="Nhập câu trả lời của bạn">
+            </div>
+            <div class="form-group">
+                <label>5. Địa chỉ Email <span class="required">*</span></label>
+                <input type="email" required placeholder="Nhập câu trả lời của bạn">
+            </div>
+            <div class="form-group">
+                <label>6. Bạn muốn đăng ký khóa học Scratch nào? <span class="required">*</span></label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="course"> Scratch Cơ bản (Beginner)</label>
+                    <label><input type="checkbox" name="course"> Scratch nâng cao (Advanced)</label>
+                    <label><input type="checkbox" name="course"> Lập trình trò chơi giáo dục (Expert)</label>
+                    <label><input type="checkbox" name="course"> Luyện thi tin học trẻ Scratch</label>
+                    <label><input type="checkbox" name="course"> Trí tuệ nhân tạo với Scratch</label>
+                    <label><input type="checkbox" name="course"> Điều khiển robot với Scratch</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>7. Link facebook của bố mẹ</label>
+                <input type="text" placeholder="Nhập câu trả lời của bạn">
+            </div>
+            <div class="form-group">
+                <label>8. Tỉnh thành đang sinh sống <span class="required">*</span></label>
+                <select required>
+                    <option value="">Chọn câu trả lời của bạn</option>
+                    <option value="Hà Nội">Hà Nội</option>
+                    <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+                    <option value="Đà Nẵng">Đà Nẵng</option>
+                    <option value="Khác">Khác</option>
+                </select>
+            </div>
+            <button type="submit" class="form-submit">Gửi</button>
+            <div class="form-note">
+                Không bao giờ gửi mật khẩu của bạn. <a href="#"
+                    style="color:#7c4dff;text-decoration:underline;">Báo cáo lạm dụng</a>
+            </div>
+        </form>
+        <div class="form-footer">
+            <img src="https://forms.office.com/cdn/images/microsoft365logo_v1.png" alt="Microsoft 365" height="32"
+                style="vertical-align:middle;margin-right:8px;">
+            Nội dung này được tạo bởi chủ sở hữu của biểu mẫu. Dữ liệu bạn gửi sẽ được gửi đến chủ sở hữu biểu
+            mẫu. Microsoft không chịu trách nhiệm về quyền riêng tư hoặc thực tiễn bảo mật của khách hàng, bao
+            gồm cả các biện pháp bảo mật của chủ sở hữu biểu mẫu này. Không bao giờ đưa ra mật khẩu của bạn.<br>
+            <span style="color:#7c4dff;font-weight:bold;">Microsoft Forms</span> | Các cuộc khảo sát, câu đố và
+            cuộc thăm dò do AI cung cấp
+        </div>
+    </div>
+</body>
+
+</html>

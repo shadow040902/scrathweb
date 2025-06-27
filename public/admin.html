@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Scratch</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" type="image/svg+xml" href="Icon.svg">
+  <style>
+    body {
+      background: #f6f8fa;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 40px 0;
+    }
+
+    header {
+      background: #fff;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      padding: 16px 0 10px 0;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo img {
+      height: 48px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #a259e6;
+      margin-bottom: 18px;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .main-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      padding: 32px 28px 28px 28px;
+    }
+
+    .add-btn {
+      background: #a259e6;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 22px;
+      font-size: 1.1em;
+      font-weight: bold;
+      margin-bottom: 18px;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: block;
+      margin-left: auto;
+    }
+
+    .add-btn:hover {
+      background: #7c2ae8;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 10px;
+      background: #fff;
+    }
+
+    th,
+    td {
+      border: 1px solid #e0e0e0;
+      padding: 10px 8px;
+      text-align: left;
+      font-size: 1.05em;
+    }
+
+    th {
+      background: #f3eaff;
+      color: #a259e6;
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+      background: #faf7ff;
+    }
+
+    button.action-btn {
+      background: #fff;
+      color: #a259e6;
+      border: 1.5px solid #a259e6;
+      border-radius: 4px;
+      padding: 5px 14px;
+      margin: 0 2px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border 0.15s;
+    }
+
+    button.action-btn:hover {
+      background: #f3eaff;
+      color: #7c2ae8;
+      border-color: #7c2ae8;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background: rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-content {
+      background: #fff;
+      margin: 60px auto;
+      padding: 30px 24px 18px 24px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 4px 24px rgba(162, 89, 230, 0.13);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .close {
+      color: #a259e6;
+      position: absolute;
+      right: 18px;
+      top: 12px;
+      font-size: 1.8em;
+      cursor: pointer;
+    }
+
+    #regForm input,
+    #regForm button {
+      width: 100%;
+      padding: 9px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+
+    #regForm button {
+      background: #a259e6;
+      color: #fff;
+      border: none;
+      font-weight: bold;
+      margin-top: 8px;
+      transition: background 0.2s;
+    }
+
+    #regForm button:hover {
+      background: #7c2ae8;
+    }
+
+    @media (max-width: 700px) {
+      .main-container {
+        padding: 10px 2px;
+      }
+
+      table,
+      th,
+      td {
+        font-size: 0.97em;
+      }
+
+      .modal-content {
+        padding: 18px 6px 12px 6px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="Scratch_logo.svg" alt="Scratch Logo">
+    </div>
+  </header>
+  <div class="main-container">
+    <h2>Danh sách đăng ký học viên</h2>
+    <button class="add-btn" onclick="openAddDialog()">+ Thêm mới</button>
+    <table id="regTable">
+      <thead>
+        <tr>
+          <th>Họ tên</th>
+          <th>Năm sinh</th>
+          <th>Phụ huynh</th>
+          <th>Điện thoại</th>
+          <th>Email</th>
+          <th>Khóa học</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <!-- Modal dialog -->
+  <div id="regDialog" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeDialog()">&times;</span>
+      <h3 id="dialogTitle">Thêm đăng ký học viên</h3>
+      <form id="regForm">
+        <input type="hidden" id="regId">
+        <input type="text" id="dlgStudentName" placeholder="Họ tên" required>
+        <input type="text" id="dlgYearOfBirth" placeholder="Năm sinh" required>
+        <input type="text" id="dlgParentName" placeholder="Phụ huynh" required>
+        <input type="text" id="dlgPhone" placeholder="Điện thoại" required>
+        <input type="email" id="dlgEmail" placeholder="Email" required>
+        <label style="margin-bottom:5px;">Chọn khóa học:</label>
+        <div id="dlgCourses" style="margin-bottom:10px;">
+          <label><input type="checkbox" name="courses" value="Scratch Cơ bản (Beginner)"> Scratch Cơ bản
+            (Beginner)</label><br>
+          <label><input type="checkbox" name="courses" value="Scratch nâng cao (Advanced)"> Scratch nâng cao
+            (Advanced)</label><br>
+          <label><input type="checkbox" name="courses" value="Lập trình trò chơi giáo dục (Expert)"> Lập trình trò chơi
+            giáo dục (Expert)</label><br>
+          <label><input type="checkbox" name="courses" value="Luyện thi tin học trẻ Scratch"> Luyện thi tin học trẻ
+            Scratch</label><br>
+          <label><input type="checkbox" name="courses" value="Trí tuệ nhân tạo với Scratch"> Trí tuệ nhân tạo với
+            Scratch</label><br>
+          <label><input type="checkbox" name="courses" value="Điều khiển robot với Scratch"> Điều khiển robot với
+            Scratch</label>
+        </div>
+        <button type="submit" id="dlgSubmitBtn">Lưu</button>
+      </form>
+      </form>
+    </div>
+  </div>
+  <script>
+    let editingId = null;
+
+    function openAddDialog() {
+      editingId = null;
+      document.getElementById('dialogTitle').innerText = 'Thêm đăng ký học viên';
+      document.getElementById('regForm').reset();
+      document.getElementById('regId').value = '';
+      document.getElementById('regDialog').style.display = 'block';
+    }
+
+    function openEditDialog(reg) {
+      editingId = reg._id;
+      document.getElementById('dialogTitle').innerText = 'Sửa đăng ký học viên';
+      document.getElementById('regId').value = reg._id;
+      document.getElementById('dlgStudentName').value = reg.studentName || '';
+      document.getElementById('dlgYearOfBirth').value = reg.yearOfBirth || '';
+      document.getElementById('dlgParentName').value = reg.parentName || '';
+      document.getElementById('dlgPhone').value = reg.phone || '';
+      document.getElementById('dlgEmail').value = reg.email || '';
+
+      // Xóa tất cả các checkbox đã chọn trước đó
+      const checkboxes = document.querySelectorAll('#dlgCourses input[type="checkbox"]');
+      checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+      });
+
+      // Đánh dấu các checkbox tương ứng với khóa học đã đăng ký
+      if (Array.isArray(reg.course)) {
+        reg.course.forEach(course => {
+          const checkbox = Array.from(checkboxes).find(cb => cb.value === course);
+          if (checkbox) {
+            checkbox.checked = true;
+          }
+        });
+      }
+
+      document.getElementById('regDialog').style.display = 'block';
+    }
+
+    function closeDialog() {
+      document.getElementById('regDialog').style.display = 'none';
+    }
+
+    window.onclick = function (event) {
+      const modal = document.getElementById('regDialog');
+      if (event.target == modal) modal.style.display = "none";
+    };
+
+    async function fetchRegs() {
+      const res = await fetch('/api/registrations');
+      const data = await res.json();
+      const tbody = document.querySelector('#regTable tbody');
+      tbody.innerHTML = '';
+      data.forEach(reg => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${reg.studentName || ''}</td>
+          <td>${reg.yearOfBirth || ''}</td>
+          <td>${reg.parentName || ''}</td>
+          <td>${reg.phone || ''}</td>
+          <td>${reg.email || ''}</td>
+          <td>${Array.isArray(reg.course) ? reg.course.join(', ') : reg.course || ''}</td>
+          <td>
+            <button class="action-btn" onclick='editReg("${reg._id}")'>Sửa</button>
+            <button class="action-btn" onclick='deleteReg("${reg._id}")'>Xoá</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+        tr.querySelector('button[onclick^="editReg"]').onclick = () => openEditDialog(reg);
+      });
+    }
+
+    async function deleteReg(id) {
+      if (confirm('Xoá đăng ký này?')) {
+        await fetch('/api/registrations/' + id, { method: 'DELETE' });
+        fetchRegs();
+      }
+    }
+
+    function editReg(id) {
+      // Hàm này chỉ để gọi openEditDialog, dữ liệu sẽ được truyền từ fetchRegs
+    }
+
+    document.getElementById('regForm').onsubmit = async function (e) {
+      e.preventDefault();
+      const data = {
+        studentName: document.getElementById('dlgStudentName').value,
+        yearOfBirth: document.getElementById('dlgYearOfBirth').value,
+        parentName: document.getElementById('dlgParentName').value,
+        phone: document.getElementById('dlgPhone').value,
+        email: document.getElementById('dlgEmail').value,
+        course: Array.from(document.querySelectorAll('#dlgCourses input[type="checkbox"]:checked')).map(cb => cb.value)
+      };
+      if (editingId) {
+        // Sửa
+        const res = await fetch('/api/registrations/' + editingId, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const result = await res.json();
+        if (result.success) {
+          closeDialog();
+          fetchRegs();
+          alert('Sửa thành công!');
+        } else {
+          alert(result.message || 'Sửa thất bại!');
+        }
+      } else {
+        // Thêm mới
+        const res = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const result = await res.json();
+        if (result.success) {
+          closeDialog();
+          fetchRegs();
+          alert('Thêm đăng ký thành công!');
+        } else {
+          alert(result.message || 'Thêm đăng ký thất bại!');
+        }
+      }
+    };
+
+    fetchRegs();
+  </script>
+  <script>
+    // Kiểm tra đăng nhập
+    if (localStorage.getItem('admin') !== '1') {
+      window.location.href = 'login.html';
+    }
+  </script>
+</body>
+
+</html>

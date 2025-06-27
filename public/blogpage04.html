@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog-Tin tức | Scratch</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="Icon.svg">
+</head>
+
+<body>
+    <style>
+        body {
+            background: #f6f8fa;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 40px 0;
+        }
+
+        .article-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            max-width: 380px;
+            margin: 0 auto;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.2s;
+        }
+
+        .article-card:hover {
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.13);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            background: #eee;
+            display: block;
+        }
+
+        .article-content {
+            padding: 22px 20px 20px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-title {
+            font-size: 1.18rem;
+            font-weight: 600;
+            margin: 0 0 12px 0;
+            color: #222;
+            line-height: 1.4;
+        }
+
+        .article-meta {
+            color: #a259e6;
+            font-size: 1rem;
+            margin-bottom: 14px;
+            font-weight: 500;
+        }
+
+        .article-meta .article-author,
+        .article-meta .article-date {
+            color: #a259e6;
+        }
+
+        .article-summary {
+            font-size: 1rem;
+            color: #444;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .exam-list-custom {
+            background: #fff;
+            border-radius: 10px;
+            padding: 18px 18px 8px 18px;
+            max-width: 600px;
+            margin: 24px auto 0 auto;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .exam-item-custom {
+            margin-bottom: 28px;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 14px;
+        }
+
+        .exam-item-custom:last-child {
+            border-bottom: none;
+        }
+
+        .exam-item-title-custom {
+            font-size: 1.35em;
+            font-weight: bold;
+            color: #111;
+            margin-bottom: 6px;
+            line-height: 1.18;
+        }
+
+        .exam-item-meta-custom {
+            color: #7c4dff;
+            font-size: 1em;
+            margin-bottom: 7px;
+            font-weight: 500;
+        }
+
+        .exam-item-author,
+        .exam-item-date {
+            color: #7c4dff;
+            font-weight: 500;
+        }
+
+        .exam-item-desc-custom {
+            color: #555;
+            font-size: 1.08em;
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 36px;
+            margin-bottom: 24px;
+        }
+
+        .pagination {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(162, 89, 230, 0.07);
+            padding: 10px 18px;
+        }
+
+        .pagination-info {
+            color: #a259e6;
+            margin-right: 16px;
+            font-size: 1.08rem;
+            font-weight: 500;
+        }
+
+        .pagination-btn,
+        .pagination-current,
+        .pagination-ellipsis {
+            border: 1.5px solid #a259e6;
+            background: #fff;
+            color: #a259e6;
+            padding: 5px 15px;
+            margin: 0 3px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.08rem;
+            transition: background 0.15s, color 0.15s, border 0.15s;
+            text-decoration: none;
+            display: inline-block;
+            min-width: 38px;
+            text-align: center;
+        }
+
+        .pagination-btn:hover {
+            background: #f3eaff;
+            color: #7c2ae8;
+            border-color: #7c2ae8;
+        }
+
+        .pagination-current {
+            background: #fff;
+            color: #222;
+            font-weight: bold;
+            border: 2px solid #222;
+            cursor: default;
+        }
+
+        .pagination-ellipsis {
+            border: none;
+            background: none;
+            color: #a259e6;
+            cursor: default;
+            padding: 5px 10px;
+            font-size: 1.15rem;
+        }
+
+        @media (max-width: 900px) {
+            .pagination-container {
+                margin-top: 28px;
+            }
+
+            .pagination {
+                flex-wrap: wrap;
+                padding: 8px 8px;
+            }
+
+            .pagination-info {
+                margin-bottom: 6px;
+                margin-right: 10px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+    <header>
+        <div class="logo">
+            <img src="Scratch_logo.svg" alt="Scratch Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="khoahoc.html">Khóa học</a></li>
+                <li><a href="khotailieu.html">Kho tài liệu</a></li>
+                <li><a href="huongdangiaidethi.html">Hướng dẫn giải đề</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="dangkyhoc.html">Đăng ký học</a></li>
+                <li><a href="contact.html">Liên hệ</a></li>
+            </ul>
+        </nav>
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="Tìm kiếm...">
+            <i class="fas fa-search" id="search-icon"></i>
+            <i class="fas fa-times" id="close-icon"></i>
+        </div>
+    </header>
+
+    <section class="promo-banner">
+        <div class="promo-content">
+
+            <h2>Blog/ Tin tức</h2>
+            <p>Nơi chia sẻ kiến thức lập trình sáng tạo, hướng dẫn thực hành Scratch và cập nhật tin tức giáo dục, công
+                nghệ
+                dành cho mọi lứa tuổi!</p>
+            <a href="dangkykhoahoc.html" class="register-button">ĐĂNG KÝ KHÓA HỌC</a>
+        </div>
+    </section>
+
+    <section class="course-list">
+        <br>
+        <div class="course-container">
+            <div class="course-card">
+                <img src="huongdanlaptrinh.png" alt="scrathAI">
+                <div class="course-info">
+                    <h3>Cách bố mẹ hướng dẫn con học lập trình Scratch dù không phải chuyên gia lập trình</h3>
+                    <div class="exam-item-meta-custom">
+                        bởi <span class="exam-item-author">Nguyễn Nam</span> | <span class="exam-item-date">Th2 6,
+                            2025</span>
+                    </div>
+                    <h5>Bố mẹ không cần phải là chuyên gia lập trình vẫn có thể hướng dẫn con học lập trình Scratch. Bài
+                        viết này sẽ giúp bạn đồng hành cùng con trên hành...</h5>
+                </div>
+            </div>
+            <div class="course-card">
+                <img src="scratchtoAI.png" alt="scratchAI">
+                <div class="course-info">
+                    <h3>Từ lập trình Scratch đến AI: Hành trình học lập trình của trẻ em</h3>
+                    <div class="exam-item-meta-custom">
+                        bởi <span class="exam-item-author">Nguyễn Nam</span> | <span class="exam-item-date">Th2 6,
+                            2025</span>
+                    </div>
+                    <h5>Trong thời đại công nghệ, việc trang bị cho trẻ những kỹ năng kỹ thuật số là điều vô cùng cần
+                        thiết. Lập trình không chỉ giúp trẻ hiểu cách hoạt...</h5>
+                </div>
+            </div>
+            <div class="course-card">
+                <img src="scratchlearningWithoutAi.png" alt="scratchAI">
+                <div class="course-info">
+                    <h3>Trẻ em học được những gì từ lập trình Scratch ngoài tư duy lập trình?</h3>
+                    <div class="exam-item-meta-custom">
+                        bởi <span class="exam-item-author">Nguyễn Nam</span> | <span class="exam-item-date">Th2 6, 2025
+
+                        </span>
+                    </div>
+                    <h5>Lợi ích của việc học lập trình Scratch không chỉ giúp trẻ phát triển tư duy lập trình, mà còn
+                        rèn luyện kỹ năng giải quyết vấn đề, tư duy logic, tự...</h5>
+                </div>
+            </div>
+            <div class="course-card">
+                <img src="khoahochourofcode.png" alt="scratchAI">
+                <div class="course-info">
+                    <h3>Khóa học Scratch Hour of Code: Tạo nền tảng cho nghề nghiệp tương lai</h3>
+                    <div class="exam-item-meta-custom">
+                        bởi <span class="exam-item-author">Nguyễn Nam</span> | <span class="exam-item-date">Th10 15,
+                            2024</span>
+                    </div>
+                    <h5>Trong bối cảnh công nghệ phát triển không ngừng, lập trình đã trở thành kỹ năng cốt lõi giúp trẻ
+                        em tiếp cận với thế giới hiện đại. Việc học lập...</h5>
+                </div>
+            </div>
+            <div class="course-card">
+                <img src="phatrientuduylaptrinh.png" alt="scratchAI">
+                <div class="course-info">
+                    <h3>Phát triển tư duy giải quyết vấn đề thông qua lập trình Scratch</h3>
+                    <div class="exam-item-meta-custom">
+                        bởi <span class="exam-item-author">Nguyễn Nam</span> | <span class="exam-item-date">Th10 15,
+                            2024</span>
+                    </div>
+                    <h5>Trong thế giới hiện đại, tư duy giải quyết vấn đề là một kỹ năng quan trọng giúp trẻ đối mặt với
+                        những thách thức trong học tập và trong cuộc sống...</h5>
+                </div>
+            </div>
+            <div class="course-card">
+                <img src="phuhuynhgiupconhoclaptrinh.png" alt="scratchAI">
+                <div class="course-info">
+                    <h3>Cách phụ huynh giúp con mình học lập trình hiệu quả</h3>
+                    <div class="exam-item-meta-custom">
+                        bởi <span class="exam-item-author">Nguyễn Nam</span> | <span class="exam-item-date">Th10 14,
+                            2024
+
+                        </span>
+                    </div>
+                    <h5>Lập trình đang trở thành một kỹ năng quan trọng trong thế giới hiện đại, không chỉ đối với người
+                        lớn mà còn cả trẻ em, đặc biệt là ở lứa tuổi tiểu...</h5>
+                </div>
+            </div>
+            <div class="course-card">
+                <img src="batdauhoclaptrinhhieuqua.png" alt="scratchAI">
+                <div class="course-info">
+                    <h3>Làm sao để bắt đầu học lập trình một cách hiệu quả?</h3>
+                    <div class="exam-item-meta-custom">
+                        bởi <span class="exam-item-author">Nguyễn Nam</span> | <span class="exam-item-date">Th10 6,
+                            2024</span>
+                    </div>
+                    <h5>Lập trình không chỉ là kỹ năng của những chuyên gia công nghệ mà hiện nay nó đã trở thành một kỹ
+                        năng quan trọng cho mọi lứa tuổi, đặc biệt là các...</h5>
+                </div>
+            </div>
+            <div class="course-card">
+                <img src="conbanhoclaptrinhhieuqua.png" alt="scratchAI">
+                <div class="course-info">
+                    <h3>Làm sao để con bạn học lập trình hiệu quả?</h3>
+                    <div class="exam-item-meta-custom">
+                        bởi <span class="exam-item-author">Nguyễn Nam</span> | <span class="exam-item-date">Th10 6, 2024
+
+                        </span>
+                    </div>
+                    <h5>Trong thời đại công nghệ phát triển vượt bậc, việc học lập trình đã trở thành một kỹ năng quan
+                        trọng đối với trẻ em. Tuy nhiên, lập trình không phải...</h5>
+                </div>
+            </div>
+            <div class="course-card">
+                <img src="giaiphapdephatrientuduy.png" alt="scratchAI">
+                <div class="course-info">
+                    <h3>Lập trình Scratch: Giải pháp tuyệt vời để phát triển tư duy trong kỳ nghỉ</h3>
+                    <div class="exam-item-meta-custom">
+                        bởi <span class="exam-item-author">Nguyễn Nam</span> | <span class="exam-item-date">Th10 6,
+                            2024</span>
+                    </div>
+                    <h5>Trong cuộc sống hiện đại, công nghệ đã trở thành một phần không thể thiếu trong sự phát triển
+                        của trẻ em. Bên cạnh những môn học truyền thống, kỹ...</h5>
+                </div>
+    </section>
+    <div class="pagination-container">
+        <div class="pagination">
+            <span class="pagination-info">Trang 4 trên 9</span>
+            <a href="blog.html" class="pagination-btn">Trang đầu &laquo;</a>
+            <a href="blogpage03.html" class="pagination-btn">&laquo;</a>
+            <a href="blogpage03.html" class="pagination-btn">3</a>
+            <span class="pagination-current">4</span>
+            <a href="blogpage05.html" class="pagination-btn">5</a>
+            <a href="blogpage05.html" class="pagination-btn">&raquo;</a>
+            <a href="blogpage09.html" class="pagination-btn">Trang cuối &raquo;</a>
+        </div>
+    </div>
+
+    <section class="scratch-hero-section-v2">
+        <div class="scratch-hero-container-v2">
+            <div class="scratch-hero-left-v2">
+                <h1>Lập trình Scratch –<br>Mở cửa tương lai</h1>
+                <p>
+                    Học lập trình Scratch không chỉ giúp các bạn trẻ phát triển kiến thức, kỹ năng một cách toàn diện mà
+                    còn là
+                    chìa khóa mở ra cánh cửa tương lai. Hãy bắt đầu hành trình chinh phục những ước mơ với khóa học lập
+                    trình
+                    Scratch ngay từ sớm để có nền tảng vững chắc cho một tương lai tươi sáng!
+                </p>
+                <a href="dangkykhoahoc.html" class="btn-purple-v2">Đăng ký ngay</a>
+            </div>
+            <div class="scratch-hero-right-v2">
+                <img src="scratch-future.png" alt="Học sinh học Scratch">
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: #6c47a6; color: #fff; padding: 48px 0 0 0; margin-top: 60px;">
+        <div
+            style="max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 0 120px;">
+            <ul style="list-style: none; padding: 0; margin: 0 0 32px 0; min-width: 320px;">
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Về Hour Of Code</span></li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Kho tài liệu</span></li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Ôn luyện, giải đề thi</span>
+                </li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Thư viện Scratch</span></li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Bài viết về Scratch</span>
+                </li>
+            </ul>
+            <ul style="list-style: none; padding: 0; margin: 0 0 32px 0; min-width: 320px;">
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Hourofcode Vietnam</span>
+                </li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Thế giới thủ thuật</span>
+                </li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Cẩm nang dạy học</span></li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Kỹ năng số</span></li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Phụ huynh Thông thái</span>
+                </li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">HourofAI.edu.vn</span></li>
+            </ul>
+            <ul style="list-style: none; padding: 0; margin: 0 0 32px 0; min-width: 320px;">
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Blog/ Tin tức</span></li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Sản phẩm học sinh</span>
+                </li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Kho đề thi</span></li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Hướng dẫn giải đề</span>
+                </li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Đăng ký học</span></li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Liên hệ</span></li>
+            </ul>
+        </div>
+        <div
+            style="background: #4d3970; margin-top: 32px; padding: 18px 0 12px 0; text-align: center; font-weight: bold; font-size: 1.15em; letter-spacing: 1px; position: relative; display: flex; align-items: center; justify-content: center;">
+            <span style="flex:1; text-align:left; margin-left: 40px;">DESIGN BY: HOUR OF CODE VIETNAM</span>
+            <span style="display: flex; gap: 28px; align-items: center; margin-right: 40px;">
+                <a href="#" style="color: #fff;"><i class="fab fa-facebook-f" style="font-size: 2em;"></i></a>
+                <a href="#" style="color: #fff;"><i class="fab fa-x-twitter" style="font-size: 2em;"></i></a>
+                <a href="#" style="color: #fff;"><i class="fab fa-instagram" style="font-size: 2em;"></i></a>
+                <a href="#" style="color: #fff;"><i class="fas fa-rss" style="font-size: 2em;"></i></a>
+            </span>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

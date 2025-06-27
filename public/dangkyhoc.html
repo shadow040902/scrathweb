@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng ký học lập trình Scratch</title>
+  <link rel="icon" type="image/svg+xml" href="Icon.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #e3e6f3 0%, #c9c6f6 100%);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 24px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      flex-wrap: wrap;
+    }
+
+    .logo img {
+      height: 48px;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #333;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 18px;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav ul li a:hover {
+      color: #7c4dff;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .search-box input {
+      padding: 6px 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 12px;
+        background-color: #fff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        padding: 12px 0;
+      }
+
+      nav ul.show {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      nav {
+        width: 100%;
+      }
+
+      .search-box {
+        margin-top: 12px;
+        width: 100%;
+      }
+    }
+
+    /* --- Register Layout --- */
+    .register-main {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 32px;
+      max-width: 1100px;
+      margin: 40px auto 0 auto;
+      padding: 0 12px;
+    }
+
+    .register-form-col {
+      flex: 2;
+      min-width: 340px;
+    }
+
+    .form-container {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 24px rgba(124, 77, 255, 0.10);
+      padding: 28px 22px 18px 22px;
+    }
+
+    .register-aside-col {
+      flex: 1;
+      min-width: 260px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .register-aside-box {
+      background: #f7f3ff;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px rgba(124, 77, 255, 0.06);
+      padding: 22px 16px 18px 16px;
+      text-align: center;
+    }
+
+    .aside-title {
+      color: #7c4dff;
+      font-size: 1.3em;
+      font-weight: bold;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .aside-desc {
+      color: #333;
+      font-size: 1em;
+      line-height: 1.5;
+    }
+
+    .register-aside-imgbox {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px rgba(124, 77, 255, 0.06);
+      padding: 12px 10px 10px 10px;
+      text-align: center;
+    }
+
+    .register-aside-imgbox img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 8px;
+    }
+
+    .aside-img-caption {
+      color: #7c4dff;
+      font-weight: bold;
+      font-size: 1.08em;
+      margin-top: 4px;
+    }
+
+    /* --- Form Style --- */
+    .form-title {
+      font-size: 1.15em;
+      font-weight: bold;
+      color: #222;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .form-desc {
+      color: #555;
+      font-size: 0.98em;
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: #222;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="number"],
+    .form-group select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1em;
+      background: #f6f7fb;
+      transition: border 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border: 1.5px solid #7c4dff;
+      outline: none;
+    }
+
+    .form-group .checkbox-group {
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group .checkbox-group label {
+      font-weight: 400;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 0;
+    }
+
+    .form-group .checkbox-group input[type="checkbox"] {
+      accent-color: #7c4dff;
+      width: 16px;
+      height: 16px;
+    }
+
+    .required {
+      color: #d32f2f;
+      margin-left: 2px;
+      font-size: 1em;
+    }
+
+    .form-submit {
+      width: 100%;
+      background: #7c4dff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 0;
+      font-size: 1.1em;
+      font-weight: bold;
+      margin-top: 12px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .form-submit:hover {
+      background: #5e35b1;
+    }
+
+    .form-note {
+      font-size: 0.95em;
+      color: #666;
+      margin: 18px 0 0 0;
+      text-align: left;
+    }
+
+    .form-footer {
+      margin-top: 28px;
+      border-top: 1px solid #eee;
+      padding-top: 16px;
+      font-size: 0.92em;
+      color: #888;
+      text-align: left;
+    }
+
+    /* Bổ sung hoặc ghi đè các class cho aside */
+    .custom-aside-box {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(124, 77, 255, 0.10);
+      padding: 22px 16px 18px 16px;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .aside-logo {
+      width: 90px;
+      margin-bottom: 0;
+      margin-top: 2px;
+    }
+
+    .custom-caption {
+      color: #FFD600;
+      font-weight: bold;
+      font-size: 1.08em;
+      margin-bottom: 0;
+      margin-top: 0;
+      letter-spacing: 0.5px;
+    }
+
+    .custom-aside-imgbox {
+      background: #f7f3ff;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px rgba(124, 77, 255, 0.10);
+      padding: 14px 10px 10px 10px;
+      text-align: center;
+    }
+
+    .ai-for-kids-box {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px rgba(124, 77, 255, 0.08);
+      padding: 10px 8px 8px 8px;
+      margin-top: 6px;
+      margin-bottom: 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .ai-for-kids-img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 8px;
+    }
+
+    .ai-for-kids-title {
+      font-size: 1.1em;
+      font-weight: bold;
+      color: #888;
+      margin-bottom: 6px;
+      margin-top: -2px;
+      letter-spacing: 0.5px;
+    }
+
+    .ai-for-kids-review {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 1px 6px rgba(124, 77, 255, 0.07);
+      padding: 8px 8px 6px 8px;
+      margin: 0 auto 8px auto;
+      width: 90%;
+      font-size: 0.97em;
+      text-align: left;
+    }
+
+    .ai-for-kids-review .reviewer {
+      font-weight: bold;
+      color: #444;
+      margin-bottom: 2px;
+    }
+
+    .ai-for-kids-review .review-text {
+      color: #333;
+      margin: 4px 0 2px 0;
+      font-weight: 400;
+    }
+
+    .ai-for-kids-link {
+      color: #888;
+      font-size: 0.95em;
+      margin-top: 2px;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 900px) {
+      .register-main {
+        flex-direction: column;
+        gap: 24px;
+        max-width: 98vw;
+      }
+
+      .register-aside-col {
+        flex-direction: row;
+        gap: 12px;
+      }
+
+      .register-aside-box,
+      .register-aside-imgbox {
+        min-width: 0;
+        flex: 1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .register-main {
+        padding: 0 2vw;
+      }
+
+      .form-container {
+        padding: 12px 4vw 8px 4vw;
+      }
+
+      .register-aside-col {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .custom-aside-box,
+      .custom-aside-imgbox {
+        padding: 10px 4vw 8px 4vw;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="Scratch_logo.svg" alt="Scratch Logo">
+    </div>
+    <div class="menu-toggle" id="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+    <nav id="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="khoahoc.html">Khóa học</a></li>
+        <li><a href="khotailieu.html">Kho tài liệu</a></li>
+        <li><a href="huongdangiaidethi.html">Hướng dẫn giải đề</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="dangkyhoc.html">Đăng ký học</a></li>
+        <li><a href="contact.html">Liên hệ</a></li>
+      </ul>
+    </nav>
+    <div class="search-box" id="search-box">
+      <input type="text" id="search-input" placeholder="Tìm kiếm...">
+      <i class="fas fa-search" id="search-icon" style="cursor:pointer;"></i>
+      <i class="fas fa-times" id="close-icon" style="cursor:pointer;"></i>
+    </div>
+  </header>
+
+  <div class="register-main">
+    <div class="register-form-col">
+      <div class="form-container">
+        <div class="form-title">ĐĂNG KÝ HỌC LẬP TRÌNH SCRATCH</div>
+        <div class="form-desc">
+          Học lập trình Scratch không chỉ giúp các bạn trẻ phát triển kiến thức, kỹ năng một cách toàn diện mà còn
+          là chìa khóa mở ra cánh cửa tương lai. Hãy bắt đầu hành trình chinh phục những ước mơ với khóa học lập
+          trình Scratch ngay từ sớm để có nền tảng vững chắc cho một tương lai tươi sáng!
+        </div>
+        <form id="registerForm">
+          <div class="form-group">
+            <label>1. Họ và tên học viên <span class="required">*</span></label>
+            <input type="text" name="studentName" required placeholder="Nhập câu trả lời của bạn">
+          </div>
+          <div class="form-group">
+            <label>2. Năm sinh <span class="required">*</span></label>
+            <input type="text" name="yearOfBirth" required placeholder="Nhập câu trả lời của bạn">
+          </div>
+          <div class="form-group">
+            <label>3. Họ tên bố mẹ <span class="required">*</span></label>
+            <input type="text" name="parentName" required placeholder="Nhập câu trả lời của bạn">
+          </div>
+          <div class="form-group">
+            <label>4. Số điện thoại liên hệ <span class="required">*</span></label>
+            <input type="text" name="phone" required placeholder="Nhập câu trả lời của bạn">
+          </div>
+          <div class="form-group">
+            <label>5. Địa chỉ Email <span class="required">*</span></label>
+            <input type="email" name="email" required placeholder="Nhập câu trả lời của bạn">
+          </div>
+          <div class="form-group">
+            <label>6. Bạn muốn đăng ký khóa học Scratch nào? <span class="required">*</span></label>
+            <div class="checkbox-group">
+              <label><input type="checkbox" name="course"> Scratch Cơ bản (Beginner)</label>
+              <label><input type="checkbox" name="course"> Scratch nâng cao (Advanced)</label>
+              <label><input type="checkbox" name="course"> Lập trình trò chơi giáo dục (Expert)</label>
+              <label><input type="checkbox" name="course"> Luyện thi tin học trẻ Scratch</label>
+              <label><input type="checkbox" name="course"> Trí tuệ nhân tạo với Scratch</label>
+              <label><input type="checkbox" name="course"> Điều khiển robot với Scratch</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>7. Link facebook của bố mẹ</label>
+            <input type="text" placeholder="Nhập câu trả lời của bạn">
+          </div>
+          <div class="form-group">
+            <label>8. Tỉnh thành đang sinh sống <span class="required">*</span></label>
+            <select required>
+              <option value="">Chọn câu trả lời của bạn</option>
+              <option value="An Giang">An Giang</option>
+              <option value="Bà Rịa – Vũng Tàu">Bà Rịa – Vũng Tàu</option>
+              <option value="Bắc Giang">Bắc Giang</option>
+              <option value="Bắc Kạn">Bắc Kạn</option>
+              <option value="Bạc Liêu">Bạc Liêu</option>
+              <option value="Bắc Ninh">Bắc Ninh</option>
+              <option value="Bến Tre">Bến Tre</option>
+              <option value="Bình Định">Bình Định</option>
+              <option value="Bình Dương">Bình Dương</option>
+              <option value="Bình Phước">Bình Phước</option>
+              <option value="Bình Thuận">Bình Thuận</option>
+              <option value="Cà Mau">Cà Mau</option>
+              <option value="Cần Thơ">Cần Thơ</option>
+              <option value="Cao Bằng">Cao Bằng</option>
+              <option value="Đà Nẵng">Đà Nẵng</option>
+              <option value="Đắk Lắk">Đắk Lắk</option>
+              <option value="Đắk Nông">Đắk Nông</option>
+              <option value="Điện Biên">Điện Biên</option>
+              <option value="Đồng Nai">Đồng Nai</option>
+              <option value="Đồng Tháp">Đồng Tháp</option>
+              <option value="Gia Lai">Gia Lai</option>
+              <option value="Hà Giang">Hà Giang</option>
+              <option value="Hà Nam">Hà Nam</option>
+              <option value="Hà Nội">Hà Nội</option>
+              <option value="Hà Tĩnh">Hà Tĩnh</option>
+              <option value="Hải Dương">Hải Dương</option>
+              <option value="Hải Phòng">Hải Phòng</option>
+              <option value="Hậu Giang">Hậu Giang</option>
+              <option value="Hòa Bình">Hòa Bình</option>
+              <option value="Hưng Yên">Hưng Yên</option>
+              <option value="Khánh Hòa">Khánh Hòa</option>
+              <option value="Kiên Giang">Kiên Giang</option>
+              <option value="Kon Tum">Kon Tum</option>
+              <option value="Lai Châu">Lai Châu</option>
+              <option value="Lâm Đồng">Lâm Đồng</option>
+              <option value="Lạng Sơn">Lạng Sơn</option>
+              <option value="Lào Cai">Lào Cai</option>
+              <option value="Long An">Long An</option>
+              <option value="Nam Định">Nam Định</option>
+              <option value="Nghệ An">Nghệ An</option>
+              <option value="Ninh Bình">Ninh Bình</option>
+              <option value="Ninh Thuận">Ninh Thuận</option>
+              <option value="Phú Thọ">Phú Thọ</option>
+              <option value="Phú Yên">Phú Yên</option>
+              <option value="Quảng Bình">Quảng Bình</option>
+              <option value="Quảng Nam">Quảng Nam</option>
+              <option value="Quảng Ngãi">Quảng Ngãi</option>
+              <option value="Quảng Ninh">Quảng Ninh</option>
+              <option value="Quảng Trị">Quảng Trị</option>
+              <option value="Sóc Trăng">Sóc Trăng</option>
+              <option value="Sơn La">Sơn La</option>
+              <option value="Tây Ninh">Tây Ninh</option>
+              <option value="Thái Bình">Thái Bình</option>
+              <option value="Thái Nguyên">Thái Nguyên</option>
+              <option value="Thanh Hóa">Thanh Hóa</option>
+              <option value="Thừa Thiên Huế">Thừa Thiên Huế</option>
+              <option value="Tiền Giang">Tiền Giang</option>
+              <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+              <option value="Trà Vinh">Trà Vinh</option>
+              <option value="Tuyên Quang">Tuyên Quang</option>
+              <option value="Vĩnh Long">Vĩnh Long</option>
+              <option value="Vĩnh Phúc">Vĩnh Phúc</option>
+              <option value="Yên Bái">Yên Bái</option>
+            </select>
+          </div>
+          <button type="submit" class="form-submit">Gửi</button>
+          <div class="form-note">
+            Không bao giờ gửi mật khẩu của bạn. <a href="#" style="color:#7c4dff;text-decoration:underline;">Báo cáo lạm
+              dụng</a>
+          </div>
+        </form>
+        <div class="form-footer">
+          <img src="https://forms.office.com/cdn/images/microsoft365logo_v1.png" alt="Microsoft 365" height="32"
+            style="vertical-align:middle;margin-right:8px;">
+          Nội dung này được tạo bởi chủ sở hữu của biểu mẫu. Dữ liệu bạn gửi sẽ được gửi đến chủ sở hữu biểu
+          mẫu. Microsoft không chịu trách nhiệm về quyền riêng tư hoặc thực tiễn bảo mật của khách hàng, bao
+          gồm cả các biện pháp bảo mật của chủ sở hữu biểu mẫu này. Không bao giờ đưa ra mật khẩu của bạn.<br>
+          <span style="color:#7c4dff;font-weight:bold;">Microsoft Forms</span> | Các cuộc khảo sát, câu đố và
+          cuộc thăm dò do AI cung cấp
+        </div>
+      </div>
+    </div>
+    <div class="register-aside-col">
+      <div class="register-aside-box custom-aside-box">
+        <img src="logocodescarth.png" alt="CODE" class="aside-logo">
+        <div class="aside-title" style="margin-top:10px;">Trung tâm đào tạo lập trình cho trẻ em</div>
+        <div class="aside-desc" style="margin-top:10px;">
+          Chào mừng bạn đến với trung tâm đào tạo lập trình Scratch Hour Of Code – nơi tạo ra những tinh thần chiến binh
+          đầy sáng tạo và đam mê. Tại đây, chúng tôi cam kết tạo ra một môi trường học tập chất lượng cao với đội ngũ
+          giáo viên giàu kinh nghiệm trong việc đào tạo và ôn luyện các đội tuyển tin học tại các trường danh tiếng và
+          đặc biệt là vô cùng nhiệt tình và tâm huyết. Hãy nhanh tay đăng ký tham gia các khoá Scratch tại Hour Of Code
+          để bắt đầu hành trình chinh phục thế giới!
+        </div>
+      </div>
+      <div class="register-aside-imgbox custom-aside-imgbox">
+        <div class="aside-img-caption custom-caption">Khóa học</div>
+        <div class="ai-for-kids-box">
+          <img src="Khoa-hoc-AI-for-Kid.gif" alt="Khóa học AI for Kid" class="ai-for-kids-img">
+
+          <div class="ai-for-kids-review">
+            <div class="reviewer">
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <script>
+        // Responsive menu toggle (optional)
+        document.getElementById('menu-toggle')?.addEventListener('click', function () {
+          document.querySelector('nav ul').classList.toggle('show');
+        });
+        document.getElementById('registerForm').onsubmit = async function (e) {
+          e.preventDefault();
+          const data = {
+            studentName: this.studentName.value,
+            yearOfBirth: this.yearOfBirth.value,
+            parentName: this.parentName.value,
+            phone: this.phone.value,
+            email: this.email.value
+          };
+          const res = await fetch('http://localhost:4000/api/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          const result = await res.json();
+          alert(result.message);
+        };
+      </script>
+</body>
+
+</html>

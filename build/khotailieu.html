@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kho tài liệu học Scratch</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" type="image/svg+xml" href="Icon.svg">
+  
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #6c47a6;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 40px;
+      flex-wrap: wrap;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+      padding-left: 0;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    .search-box input {
+      padding: 6px 10px;
+      border: none;
+      border-radius: 4px;
+      margin-right: 8px;
+    }
+
+    .promo-banner {
+      background-color: #eee5ff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .promo-banner h2 {
+      font-size: 2em;
+      margin-bottom: 12px;
+      color: #6c47a6;
+    }
+
+    .scratch-documents {
+      padding: 60px 20px;
+    }
+
+    .scratch-documents .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .documents-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 30px;
+    }
+
+    .document-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .document-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .document-card img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 16px;
+      border-radius: 8px;
+    }
+
+    .document-card h3 {
+      font-size: 1.1em;
+      margin-bottom: 12px;
+    }
+
+    .document-card p {
+      font-size: 0.95em;
+      color: #555;
+      margin-bottom: 16px;
+    }
+
+    .download-link {
+      display: inline-block;
+      color: #6c47a6;
+      font-weight: bold;
+      text-decoration: none;
+      border: 1px solid #6c47a6;
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+
+    .download-link:hover {
+      background-color: #6c47a6;
+      color: #fff;
+    }
+
+    footer {
+      background: #6c47a6;
+      color: #fff;
+      padding: 48px 0 0 0;
+      margin-top: 60px;
+    }
+
+    footer ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 32px;
+      min-width: 320px;
+    }
+
+    footer ul li {
+      margin-bottom: 12px;
+    }
+
+    footer span {
+      color: #fff;
+    }
+
+    .footer-columns {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0 120px;
+    }
+
+    .footer-bottom {
+      background: #4d3970;
+      margin-top: 32px;
+      padding: 18px 0 12px 0;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.15em;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-bottom span:first-child {
+      flex: 1;
+      text-align: left;
+      margin-left: 40px;
+    }
+
+    .footer-bottom span:last-child {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      margin-right: 40px;
+    }
+
+    .footer-bottom a {
+      color: #fff;
+      font-size: 2em;
+    }
+    .scratch-hero-section-v2 {
+  background: #edcb5c;
+  border-radius: 16px;
+  max-width: 1400px;
+  margin: 44px auto 0 auto;
+  padding: 40px 36px 40px 36px;
+  box-shadow: 0 8px 32px rgba(124, 77, 255, 0.07);
+}
+
+.scratch-hero-container-v2 {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.scratch-hero-left-v2 {
+  flex: 1.1;
+  min-width: 340px;
+}
+
+.scratch-hero-left-v2 h1 {
+  font-size: 3em;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 32px;
+  line-height: 1.1;
+}
+
+.scratch-hero-left-v2 p {
+  font-size: 1.18em;
+  color: #222;
+  margin-bottom: 38px;
+  line-height: 1.6;
+}
+
+.btn-purple-v2 {
+  display: inline-block;
+  background: #9900cc;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 32px;
+  padding: 16px 38px;
+  font-size: 1.15em;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 8px rgba(124, 77, 255, 0.10);
+}
+
+.btn-purple-v2:hover {
+  background: #7c4dff;
+  color: #ffd600;
+}
+
+.scratch-hero-right-v2 {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scratch-hero-right-v2 img {
+  max-width: 480px;
+  width: 100%;
+  border-radius: 0;
+  box-shadow: none;
+  background: none;
+}
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo"><img src="Scratch_logo.svg" alt="Scratch Logo"></div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="khoahoc.html">Khóa học</a></li>
+        <li><a href="khotailieu.html">Kho tài liệu</a></li>
+        <li><a href="huongdangiaidethi.html">Hướng dẫn giải đề</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="dangkyhoc.html">Đăng ký học</a></li>
+        <li><a href="contact.html">Liên hệ</a></li>
+      </ul>
+    </nav>
+    <div class="search-box" id="search-box">
+      <input type="text" id="search-input" placeholder="Tìm kiếm...">
+      <i class="fas fa-search" id="search-icon" style="cursor:pointer;"></i>
+
+    </div>
+  </header>
+
+  <section class="promo-banner">
+    <h2>Kho tài liệu học tập</h2>
+    <p>Nơi chia sẻ các tài liệu học lập trình Scratch từ cơ bản đến nâng cao, được chọn lọc bởi HourOfCode Vietnam.</p>
+  </section>
+
+  <section class="scratch-documents">
+    <div class="container">
+      <div class="documents-grid">
+
+        <div class="document-card">
+          <img src="dowload01.png" alt="doc1">
+          <h3>Em học lập trình 2D với Scratch</h3>
+          <p>Tài liệu này thuộc dự án YouthSpark Digital Inclusion do Vietnet ICT, Microsoft và Bộ GDĐT phối hợp triển
+            khai. Tài liệu được thiết kế theo hướng tổ chức hoạt động…</p>
+          <p><strong>Bản quyền:</strong> Dự án YouthSpark Digital Inclusion</p>
+          <a href="dowload01.pdf" class="download-link">Download tại đây</a>
+        </div>
+        <div class="document-card">
+          <img src="dowload02.png" alt="doc2">
+          <h3>Lập trình với Scratch - Hành trình tưởng tượng</h3>
+          <p>Đây là bộ giáo trình được viết chi tiết, rõ ràng dễ hiểu do thầy Nguyễn Hữu Hưng cùng nhóm tác giả biên
+            soạn và được phát hành miễn phí</p>
+          <p><strong>Bản quyền:</strong> Phát hành miễn phí</p>
+          <a href="dowload02.pdf" class="download-link">Download tại đây</a>
+        </div>
+        <div class="document-card">
+          <img src="dowload03.png" alt="doc3">
+          <h3>Lập trình Scratch nâng cao cho học sinh</h3>
+          <p>Đây là cuốn tài liệu Scratch nâng cao dành cho học sinh đã có kiến thức cơ bản về scratch, tài liệu thuộc
+            chuỗi dự án “Lập trình cùng Dariu Vietnam”.</p>
+          <p><strong>Bản quyền:</strong> Dự án “Lập trình cùng Dariu Vietnam”</p>
+          <a href="dowload03.pdf" class="download-link">Download tại đây</a>
+        </div>
+        <div class="document-card">
+          <img src="dowload04.png" alt="doc4">
+          <h3>Tự học lập trình Scratch</h3>
+          <p>Đây là một trong những tài liệu Scratch tiếng Việt được thầy Bùi Việt Hà viết chi tiết và rất dễ hiểu, phù
+            hợp với các bạn học sinh mới bắt đầu làm quen với lập trình</p>
+          <p><strong>Bản quyền:</strong>Bùi Việt Hà (phát hành miễn phí)</p>
+          <a href="dowload04.pdf" class="download-link">Download tại đây</a>
+        </div>
+        <div class="document-card">
+          <img src="dowload05.png" alt="doc5">
+          <h3>Lập trình với Scratch 3.0</h3>
+          <p>Tài liệu này được viết chi tiết cơ bản và dễ tiếp cận, phù hợp với các bạn mới bắt đầu làm quen. Tài liệu
+            này được chia sẻ bởi trường Tiểu học Lý Tự Trọng.</p>
+          <p><strong>Bản quyền:</strong>Phát hành miễn phí</p>
+          <a href="#" class="download-link">Download tại đây</a>
+        </div>
+        <div class="document-card">
+          <img src="dowload06.png" alt="doc6">
+          <h3>Lập trình Scratch cơ bản</h3>
+          <p>Đây là cuốn tài liệu lập trình Scratch cơ bản dành cho những người mới bắt đầu, tài liệu thuộc chuỗi dự án
+            “Lập trình cùng Dariu Vietnam”.</p>
+          <p><strong>Bản quyền:</strong> Dự án Lập trình cùng Dariu Vietnam</p>
+          <a href="dowload06.pdf" class="download-link">Download tại đây</a>
+        </div>
+        <div class="document-card">
+          <img src="dowload07.png" alt="doc7">
+          <h3>Tuyển tập 20 bài học Scratch</h3>
+          <p>Tài liệu bao gồm 20 bài tập về Scratch dành cho cả 3 cấp Tiểu học, THCS và THPT. Tài liệu được biên soạn và
+            hướng dẫn bởi thầy Bùi Việt Hà</p>
+          <p><strong>Bản quyền:</strong>thầy Bùi Việt Hà (phát hành miễn phí)</p>
+          <a href="dowload07.pdf" class="download-link">Download tại đây</a>
+        </div>
+        <div class="document-card">
+          <img src="dowload08.png" alt="doc8">
+          <h3>Scratch Programming for Teens</h3>
+          <p>Đây là cuốn tài liệu bằng tiếng Anh rất chi tiết từ cơ bản đến nâng cao. Tác giả tài liệu này là <strong>
+              Jerry Lee Ford,</strong> , một nhà giáo dục và chuyên gia CNTT</p>
+          <p><strong>Bản quyền:</strong> Jerry Lee Ford (phát hành miễn phí)</p>
+          <a href="dowload08.pdf" class="download-link">Download tại đây</a>
+        </div>
+        <div class="document-card">
+          <img src="dowload09.png" alt="doc9">
+          <h3>Lập trình sáng tạo với Scratch</h3>
+          <p>Đây là cuốn tài liệu được biên dịch từ tiếng Anh bởi Phòng TN AILab, Trường ĐH Khoa học Tự nhiên. Tài liệu
+            dành cho những bạn mới bắt đầu..</p>
+          <p><strong>Bản quyền:</strong>Phát hành miễn phí</p>
+          <a href="dowload09.pdf" class="download-link">Download tại đây</a>
+        </div>
+        <div class="document-card">
+          <img src="dowload10.png" alt="doc10">
+          <h3>Learn to Program with Scratch</h3>
+          <p>Đây là tài liệu Scratch bằng tiếng Anh rất hay. Cuốn sách dành cho bất kỳ ai muốn khám phá khoa học máy
+            tính bắt đầu từ những kiến thức cơ bản</p>
+          <p><strong>Bản quyền:</strong> Phát hành miễn phí</p>
+          <a href="dowload10.pdf" class="download-link">Download tại đây</a>
+        </div>
+        <div class="document-card">
+          <img src="dowload11.png" alt="doc11">
+          <h3>Simple coding for total beginners</h3>
+          <p>Đây là tài liệu Scratch bằng tiếng Anh rất hay. Cuốn sách dành cho bất kỳ ai muốn khám phá khoa học máy
+            tính bắt đầu từ những kiến thức cơ bản</p>
+          <p><strong>Bản quyền:</strong> Phát hành miễn phí</p>
+          <a href="dowload11.pdf" class="download-link">Download tại đây</a>
+        </div>
+        <div class="document-card">
+          <img src="dowload12.png" alt="doc12">
+          <h3>Giáo trình Scratch cơ bản</h3>
+          <p>Đây là tài liệu Scratch dành cho những người mới bắt đầu làm quen với Scratch, tài liệu khá dễ tiếp cận và
+            phù hợp với học sinh tiểu học</p>
+            <p><strong>Bản quyền:</strong> Phát hành miễn phí</p>
+          <a href="dowload12.pdf" class="download-link">Download tại đây</a>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="scratch-hero-section-v2">
+  <div class="scratch-hero-container-v2">
+    <div class="scratch-hero-left-v2">
+      <h1>Lập trình Scratch –<br>Mở cửa tương lai</h1>
+      <p>
+        Học lập trình Scratch không chỉ giúp các bạn trẻ phát triển kiến thức, kỹ năng một cách toàn diện mà còn là chìa khóa mở ra cánh cửa tương lai. Hãy bắt đầu hành trình chinh phục những ước mơ với khóa học lập trình Scratch ngay từ sớm để có nền tảng vững chắc cho một tương lai tươi sáng!
+      </p>
+      <a href="dangkykhoahoc.html" class="btn-purple-v2">Đăng ký ngay</a>
+    </div>
+    <div class="scratch-hero-right-v2">
+      <img src="scratch-future.png" alt="Học sinh học Scratch">
+    </div>
+  </div>
+</section>
+    <footer style="background: #6c47a6; color: #fff; padding: 48px 0 0 0; margin-top: 60px;">
+        <div
+            style="max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 0 120px;">
+            <ul style="list-style: none; padding: 0; margin: 0 0 32px 0; min-width: 320px;">
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Về Hour Of Code</span></li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Kho tài liệu</span></li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Ôn luyện, giải đề thi</span>
+                </li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Thư viện Scratch</span></li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Bài viết về Scratch</span>
+                </li>
+            </ul>
+            <ul style="list-style: none; padding: 0; margin: 0 0 32px 0; min-width: 320px;">
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Hourofcode Vietnam</span>
+                </li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Thế giới thủ thuật</span>
+                </li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Cẩm nang dạy học</span></li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Kỹ năng số</span></li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Phụ huynh Thông thái</span>
+                </li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">HourofAI.edu.vn</span></li>
+            </ul>
+            <ul style="list-style: none; padding: 0; margin: 0 0 32px 0; min-width: 320px;">
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Blog/ Tin tức</span></li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Sản phẩm học sinh</span>
+                </li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Kho đề thi</span></li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Hướng dẫn giải đề</span>
+                </li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Đăng ký học</span></li>
+                <li style="margin-bottom: 12px; color: #2de1fc;"><span style="color: #fff;">Liên hệ</span></li>
+            </ul>
+        </div>
+        <div
+            style="background: #4d3970; margin-top: 32px; padding: 18px 0 12px 0; text-align: center; font-weight: bold; font-size: 1.15em; letter-spacing: 1px; position: relative; display: flex; align-items: center; justify-content: center;">
+            <span style="flex:1; text-align:left; margin-left: 40px;">DESIGN BY: HOUR OF CODE VIETNAM</span>
+            <span style="display: flex; gap: 28px; align-items: center; margin-right: 40px;">
+                <a href="#" style="color: #fff;"><i class="fab fa-facebook-f" style="font-size: 2em;"></i></a>
+                <a href="#" style="color: #fff;"><i class="fab fa-x-twitter" style="font-size: 2em;"></i></a>
+                <a href="#" style="color: #fff;"><i class="fab fa-instagram" style="font-size: 2em;"></i></a>
+                <a href="#" style="color: #fff;"><i class="fas fa-rss" style="font-size: 2em;"></i></a>
+            </span>
+        </div>
+    </footer>
+
+  
+    
+</body>
+
+</html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trí tuệ Nhân tạo với Scratchc | Scratch</title>
+    <link rel="icon" type="image/svg+xml" href="Icon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+        }
+
+        nav ul li a:hover {
+            color: #f5b400;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #search-input {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto 80px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            color: #111;
+            font-size: 26px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .course-header {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .course-left {
+            flex: 2;
+            text-align: center;
+        }
+
+        .course-image {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .course-left p {
+            text-align: justify;
+            margin: 15px 0;
+        }
+
+        .course-right {
+            flex: 1;
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-right h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .course-right ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .course-right li {
+            margin-bottom: 18px;
+            padding-bottom: 0;
+            border: none;
+            line-height: 1.3;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 2px;
+            margin-top: 0;
+            letter-spacing: 0.5px;
+            color: #222;
+        }
+
+        .info-value {
+            font-size: 15px;
+            font-weight: 400;
+            color: #222;
+            margin-bottom: 0;
+            margin-left: 0;
+        }
+
+        .register-btn {
+            background: #f5b400;
+            border: none;
+            padding: 12px 24px;
+            color: white;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+
+        .register-btn:hover {
+            background: #e0a800;
+        }
+
+        .register-btn-wrap {
+            display: flex;
+            justify-content: center;
+            margin-top: 32px;
+        }
+
+        .intro-box {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-top: 40px;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .intro-box h2 {
+            font-size: 20px;
+            color: #111;
+            margin-bottom: 16px;
+        }
+
+        .accordion {
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .accordion-left,
+        .accordion-right {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .accordion-item {
+            background: white;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .accordion-title {
+            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            background: #eee;
+            position: relative;
+        }
+
+        .accordion-title::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-title.active::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .accordion-content {
+            padding: 15px 20px;
+            display: none;
+            line-height: 1.6;
+        }
+
+        .accordion-title.active+.accordion-content {
+            display: block;
+        }
+
+        .info-box {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .info-box i {
+            margin-right: 10px;
+            color: #f5b400;
+        }
+
+        .info-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+
+            .course-header,
+            .accordion {
+                flex-direction: column;
+            }
+
+            .course-left,
+            .course-right,
+            .accordion-left,
+            .accordion-right {
+                width: 100%;
+            }
+
+            .course-image {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="Scratch_logo.svg" alt="Scratch Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="khoahoc.html">Khóa học</a></li>
+                <li><a href="khotailieu.html">Kho tài liệu</a></li>
+                <li><a href="huongdangiaidethi.html">Hướng dẫn giải đề</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="dangkyhoc.html">Đăng ký học</a></li>
+                <li><a href="contact.html">Liên hệ</a></li>
+            </ul>
+        </nav>
+        <div class="search-box" id="search-box">
+            <input type="text" id="search-input" placeholder="Tìm kiếm...">
+            <i class="fas fa-search" id="search-icon" style="cursor:pointer;"></i>
+            <i class="fas fa-times" id="close-icon" style="cursor:pointer;"></i>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="course-header">
+            <div class="course-left">
+                <h1>Trí tuệ Nhân tạo với Scratch</h1>
+                <img src="ScarthAI.png" alt="Scratch Course" class="course-image" />
+                <p>Bạn đang tò mò về Trí tuệ nhân tạo (AI), thứ đang làm thay đổi thế giới xung quanh ta? Bạn muốn tự
+                    tay tạo ra những ứng dụng thông minh, những trò chơi có khả năng tự học và thích nghi? Hãy đến với
+                    khóa học “Trí tuệ nhân tạo với Scratch”, nơi bạn sẽ được khám phá sức mạnh của AI một cách thú vị và
+                    dễ dàng!</p>
+                <p>Không cần phải có kiến thức chuyên sâu về lập trình, chỉ với Scratch – ngôn ngữ lập trình trực quan
+                    đầy màu sắc, bạn sẽ được hướng dẫn từng bước để xây dựng những mô hình AI đơn giản nhưng đầy ấn
+                    tượng. Tự tay tạo ra chatbot trò chuyện thông minh, trò chơi có khả năng tự học hỏi, hay thậm chí là
+                    ứng dụng nhận dạng hình ảnh…
+                </p>
+                <p>Đừng bỏ lỡ cơ hội bước vào thế giới AI đầy tiềm năng! Đăng ký ngay khóa học “Trí tuệ nhân tạo với
+                    Scratch” và trở thành những nhà sáng tạo công nghệ thông minh của tương lai!</p>
+            </div>
+            <div class="course-right">
+                <h3>Thông tin khóa học</h3>
+                <ul>
+                    <li><span class="info-label">GIÁO VIÊN</span><span class="info-value">Billy Nguyễn</span></li>
+                    <li><span class="info-label">LEVEL</span><span class="info-value">Expert</span></li>
+                    <li><span class="info-label">THỜI LƯỢNG</span><span class="info-value">30 giờ</span></li>
+                    <li><span class="info-label">HÌNH THỨC HỌC</span><span class="info-value">Học online qua ZOOM</span>
+                    </li>
+                </ul>
+                <div class="register-btn-wrap">
+                    <button class="register-btn">Đăng ký ngay</button>
+                </div>
+            </div>
+
+        </div>
+
+        <h3>Nội dung khóa học</h3>
+
+
+        <div class="accordion">
+            <div class="accordion-left">
+
+                <div class="accordion-item">
+                    <div class="accordion-title">Phần 1: Làm quen với Trí tuệ nhân tạo (AI)</div>
+                    <div class="accordion-content">Bạn muốn khám phá thế giới AI đầy bí ẩn nhưng không biết bắt đầu từ
+                        đâu? Trong phần nội dung này, bạn sẽ được làm quen với những khái niệm cơ bản về AI và ngôn ngữ
+                        lập trình Scratch. Bạn sẽ bất ngờ khi thấy việc tạo ra những ứng dụng AI đầu tiên chưa bao giờ
+                        dễ dàng đến thế!
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-title">Phần 2: Học máy (Machine Learning)</div>
+                    <div class="accordion-content">Bạn đang tò mò về cách máy tính có thể “học” và tự đưa ra quyết định?
+                        Trong phần nội dung này chúng ta sẽ cùng khám phá thế giới học máy – trái tim của AI! Bạn sẽ
+                        được tìm hiểu về các thuật toán học máy phổ biến và cách áp dụng chúng để giải quyết các vấn đề
+                        thực tế, từ nhận dạng hình ảnh đến dự đoán kết quả.</div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-title">Phần 3: Mạng nơ-ron (Neural Networks)</div>
+                    <div class="accordion-content">Bạn đang muốn hiểu rõ hơn về bộ não của AI? Hãy cùng khám phá mạng
+                        nơ-ron – mô hình toán học phức tạp nhưng đầy sức mạnh! Trong phần này bạn sẽ được tìm hiểu về
+                        cấu trúc, cách thức hoạt động và ứng dụng của mạng nơ-ron trong các lĩnh vực như thị giác máy
+                        tính, xử lý ngôn ngữ tự nhiên và nhiều hơn nữa.</div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-title">Phần 4: Xây dựng mô hình AI đơn giản</div>
+                    <div class="accordion-content">Bạn đã sẵn sàng để tự tay xây dựng những mô hình AI của riêng mình
+                        chưa? Hãy cùng thực hành các dự án thú vị và đầy thử thách! Tại đây bạn sẽ được hướng dẫn từng
+                        bước để xây dựng chatbot, trò chơi trí tuệ và các ứng dụng AI khác, từ đó củng cố kiến thức và
+                        phát triển kỹ năng của mình.</div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-title">Phần 5: Ứng dụng AI và đạo đức AI</div>
+                    <div class="accordion-content">Bạn muốn biết AI có thể làm được những gì trong thực tế? Hãy cùng
+                        khám phá những ứng dụng đa dạng của AI trong cuộc sống hàng ngày! Từ y tế, giáo dục đến kinh
+                        doanh và giải trí, bạn sẽ thấy AI đang thay đổi thế giới như thế nào và những tiềm năng to lớn
+                        mà nó mang lại.
+
+                        Trong phần này bạn cũng sẽ được tìm hiểu về những vấn đề đạo đức liên quan đến AI</div>
+                </div>
+            </div>
+
+            <div class="accordion-right">
+                <div class="info-box">
+                    <div class="info-title"><i class="fa-solid fa-book"></i> Khóa học bao gồm</div>
+                    <ul>
+                        <li>✔️ 30 giờ học</li>
+                        <li>✔️ 15 tài liệu học tập</li>
+                        <li>✔️ 15 bài tập & đồ án</li>
+                        <li>✔️ +5 dự án học tập</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-title"><i class="fa-solid fa-check-circle"></i> Điều kiện tham gia</div>
+                    <ul>
+                        <li>Không yêu cầu bạn cần có bất cứ kiến thức nào về lập trình, chỉ cần bạn thích học lập trình
+                        </li>
+                        <li>Cần 1 máy tính có kết nối internet.</li>
+                        <li>Độ tuổi phù hợp: từ 8 tuổi trở lên</li>
+                        <li>Đã hoàn thành khóa học Scratch Cơ bản
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const titles = document.querySelectorAll('.accordion-title');
+        titles.forEach(title => {
+            title.addEventListener('click', () => {
+                title.classList.toggle('active');
+                const content = title.nextElementSibling;
+                content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+    </script>
+</body>
+
+</html>
